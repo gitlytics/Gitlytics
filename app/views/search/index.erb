@@ -1,10 +1,13 @@
 <html>
-    <h2> Search successful </h2>
-    <h5> Displaying query params for POC.</h5>
+    <h2> Search Complete </h2>
+    <h5> Displaying Raw Data as POC </h5>
     <p><b> User: </b></p>
     <%= params[:user] %>
     <p><b>Repo: </b></p>
     <%= params[:repo] %>
+    <p><b>Data: </b></p>
+
+    <%= @repo.inspect %>
 
 
 
