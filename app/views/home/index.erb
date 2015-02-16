@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Gitlytics</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div class="container">
   <h1>Gitlytics</h1>
   <p>Enter the repo information you want an analytics report on!</p>
-  <form role="form">
-    <div class="form-group">
-      <label for="usr">Github Username:</label>
-      <input type="text" class="form-control" id="usr">
-    </div>
-    <div class="form-group">
-      <label for="repo">Repo:</label>
-      <input type="text" class="form-control" id="repo">
-    </div>
-    <div class="form-group">
-      <input class="btn btn-primary" type="submit">
-    </div>
-  </form>
+  <%= bootstrap_form_tag url: '/search', method: "get" do |f| %>
+
+    <%= f.text_field :user, placeholder: 'Gitlytics' %>
+    <%= f.text_field :repo, placeholder: 'Gitlytics' %>
+    <%= f.submit "Submit" %>
+
+  <% end %>
 </div>
 
 </body>
