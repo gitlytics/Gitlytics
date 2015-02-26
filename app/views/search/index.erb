@@ -1,14 +1,20 @@
 <html>
-    <h2> Search Complete </h2>
-    <h5> Displaying Raw Data as POC </h5>
+    <h1> Search Complete </h1>
+
     <p><b> User: </b></p>
     <%= params[:user] %>
     <p><b>Repo: </b></p>
     <%= params[:repo] %>
-    <p><b>Data: </b></p>
+    <h2> Data: </h2>
 
-    <%= @repo.inspect %>
+    <h4> Language </h4>
+    <p> Primary language is: <%= @repo.language %></p>
+    <p> Other language data: <%= @languages %></p>
 
+    <% @pulls.each do |pull| %>
+        <h5>Pull</h5>
+        <p>Pull request is: <%= pull.inspect %></p>
+    <% end %>
 
 
 </html>
