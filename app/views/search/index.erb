@@ -9,6 +9,9 @@
 
     <h4> Language </h4>
     <p> Primary language is: <%= @repo.language %></p>
+
+    <img src="<%= getLanguageURL @repo.language %>" alt="Language Image">
+
     <p> Other language data: <%= @languages %></p>
 
     <% @pulls.each do |pull| %>
