@@ -1,9 +1,19 @@
 # Gitlytics
 
-# First use
-Replace ```GH_USERNAME``` and ```GH_PASSWORD``` with your username and password 
+# To use locally
+For running locally, the GithubClient model searches for two environment variables so that we don’t have to define them in the code.
 
-<b> NEVER PUSH THESE TO GITHUB </b>
+These are GH_USERNAME and GH_PASSWORD.  To set, in the same terminal you will run the server from, type (with the quotes): 
+
+```
+export GH_USERNAME=’username’
+export GH_PASSWORD=’password’
+```
+
+Test out by using
+``` echo $GH_USERNAME ```
+
+You can also add these to your .bashrc and .bash_profile files, but I’m not sure how secure this is.
 
 # Run it
 ```bin/rails server```
