@@ -12,12 +12,11 @@ body {
 .important {
   font-weight: 600;
 }
-
 h1, h2 {
   padding-top: 30px;
   padding-bottom: 50px;
   font-weight: 600;
-  font-size: 110px;
+  font-size: 130px;
   text-align: center;
 }
 
@@ -57,31 +56,3 @@ h1, h2 {
 .emerald-text {
   color: $emerald;
 }
-#facebookbutton {
-  background-position: 0px -360px;
-  box-shadow: rgba(0, 0, 0, 0.04706) 0px 1px 1px 0px;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  display: inline-block;
-  height: 26px;
-  overflow-wrap: break-word;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
-  vertical-align: middle;
-  white-space: nowrap;
-  word-wrap: break-word;
-  perspective-origin: 37.671875px 14px;
-  transform-origin: 37.671875px 14px;
-  background: rgb(78, 105, 162) url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y1/r/wL6VQj7Ab77.png) repeat-x scroll 0px -360px / auto padding-box border-box;
-  border-top: 1px solid rgb(67, 90, 139);
-  border-right: 1px solid rgb(60, 84, 136);
-  border-bottom: 1px solid rgb(51, 76, 131);
-  border-left: 1px solid rgb(60, 84, 136);
-  border-radius: 2px 2px 2px 2px;
-  font: normal normal bold normal 12px/26px 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
-  outline: rgb(255, 255, 255) none 0px;
-  padding: 0px 10px;
-}
-

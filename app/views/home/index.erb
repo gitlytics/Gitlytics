@@ -5,18 +5,18 @@
 </head>
 <body>
 
-<div class="container center graystone">
-  <div class="cloud-text">
-    <h1>Gitlytics</h1>
-    <p>Enter the repo information you want an analytics report on!</p>
-    <%= bootstrap_form_tag url: '/search', method: "get" do |f| %>
+<div class="container center" style="background: #F89406">
+    <div class="cloud-text">
+      <h1>Gitlytics</h1>
+      <p>Enter the repo information you want an analytics report on!</p>
+      <%= bootstrap_form_tag url: '/search', method: "get" do |f| %>
 
-      <%= f.text_field :user, placeholder: 'Who?' %>
-      <%= f.text_field :repo, placeholder: 'Which Repo?' %>
-      <%= f.submit "Ship it!" %>
+        <%= f.text_field :user, placeholder: 'Who?' %>
+        <%= f.text_field :repo, placeholder: 'Which Repo?' %>
+        <%= f.submit "Ship it!" %>
 
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 </div>
 
 </body>
