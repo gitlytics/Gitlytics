@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Gitlytics</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <!-- head elements globally set in app/views/layouts/application.html.erb -->
 </head>
 <body>
 
-<div class="container">
-  <h1>Gitlytics</h1>
-  <p>Enter the repo information you want an analytics report on!</p>
-  <%= bootstrap_form_tag url: '/search', method: "get" do |f| %>
+<div class="container center graystone">
+  <div class="cloud-text">
+    <h1>Gitlytics</h1>
+    <p>Enter the repo information you want an analytics report on!</p>
+    <%= bootstrap_form_tag url: '/search', method: "get" do |f| %>
 
-    <%= f.text_field :user, placeholder: 'Gitlytics' %>
-    <%= f.text_field :repo, placeholder: 'Gitlytics' %>
-    <%= f.submit "Submit" %>
+      <%= f.text_field :user, placeholder: 'Who?' %>
+      <%= f.text_field :repo, placeholder: 'Which Repo?' %>
+      <%= f.submit "Ship it!" %>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 </body>

@@ -1,49 +1,66 @@
+$cloud: #ECF0F1;
+$graystone: #333;
+$primary-font: Montserrat, sans-serif;
+$shamrock: #2ECC71;
+$emerald: #27AE60;
+
 body {
-  background: #ECF0F1;
-  font-family: Montserrat, sans-serif; }
+  background: $cloud;
+  font-family: $primary-font;
+}
 
 .important {
-  font-weight: 600; }
+  font-weight: 600;
+}
 
 h1, h2 {
   padding-top: 30px;
   padding-bottom: 50px;
   font-weight: 600;
   font-size: 110px;
-  text-align: center; }
+  text-align: center;
+}
 
 .center {
   margin: 0 auto;
-  padding: 40px; }
+  padding: 40px;
+}
 
 .graystone {
-  background: #333; }
+  background: $graystone;
+}
 
 .graystone-text {
-  color: #333; }
+  color: $graystone;
+}
 
 .shamrock {
-  background: #2ECC71; }
+  background: $shamrock;
+}
 
 .shamrock-text {
-  color: #2ECC71; }
+  color: $shamrock;
+}
 
 .cloud {
-  background: #ECF0F1; }
+  background: $cloud;
+}
 
 .cloud-text {
-  color: #ECF0F1; }
+  color: $cloud;
+}
 
 .emerald {
-  background: #27AE60; }
+  background: $emerald;
+}
 
 .emerald-text {
-  color: #27AE60; }
-
+  color: $emerald;
+}
 #facebookbutton {
   background-position: 0px -360px;
   box-shadow: rgba(0, 0, 0, 0.04706) 0px 1px 1px 0px;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   display: inline-block;
   height: 26px;
@@ -57,14 +74,14 @@ h1, h2 {
   word-wrap: break-word;
   perspective-origin: 37.671875px 14px;
   transform-origin: 37.671875px 14px;
-  background: #4e69a2 url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y1/r/wL6VQj7Ab77.png) repeat-x scroll 0px -360px/auto padding-box border-box;
-  border-top: 1px solid #435a8b;
-  border-right: 1px solid #3c5488;
-  border-bottom: 1px solid #334c83;
-  border-left: 1px solid #3c5488;
+  background: rgb(78, 105, 162) url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y1/r/wL6VQj7Ab77.png) repeat-x scroll 0px -360px / auto padding-box border-box;
+  border-top: 1px solid rgb(67, 90, 139);
+  border-right: 1px solid rgb(60, 84, 136);
+  border-bottom: 1px solid rgb(51, 76, 131);
+  border-left: 1px solid rgb(60, 84, 136);
   border-radius: 2px 2px 2px 2px;
   font: normal normal bold normal 12px/26px 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
-  outline: white none 0px;
-  padding: 0px 10px; }
+  outline: rgb(255, 255, 255) none 0px;
+  padding: 0px 10px;
+}
 
-/*# sourceMappingURL=application.css.map */
