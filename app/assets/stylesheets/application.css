@@ -12,6 +12,20 @@ h1, h2 {
   font-size: 130px;
   text-align: center; }
 
+.search-h1 {
+  font-size: 100px;
+  font-weight: 700;
+  text-align: left;
+  padding-top: 50px;
+  padding-bottom: 0px; }
+
+.search-h2 {
+  font-size: 70px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 10px;
+  padding-bottom: 70px; }
+
 .center {
   margin: 0 auto;
   padding: 40px; }
