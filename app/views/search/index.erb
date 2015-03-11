@@ -12,11 +12,14 @@
 
     <img src="<%= getLanguageURL @repo.language %>" alt="Language Image">
 
-    <p> Other language data: <%= @languages %></p>
+    <h4> Other language data:</h4>
+    <% @languages.each do |key,value| %>
+        <p><%= key %>: <%= value %> bytes.</p>
+    <% end %>
 
+    <h4>Pulls</h4>
     <% @pulls.each do |pull| %>
-        <h5>Pull</h5>
-        <p>Pull request is: <%= pull.inspect %></p>
+        <p>Pull request <%= pull.number %> is: <%= pull.state %></p>
     <% end %>
 
 
