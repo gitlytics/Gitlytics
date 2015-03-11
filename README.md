@@ -20,11 +20,9 @@ You can also add these to your .bashrc and .bash_profile files, but I’m not su
 
 # Best Practices
 ### CSS Styles
-Do not edit the global css file ```app/assets/stylesheets/application.css```, instead
-edit the scss file ```application.scss``` which is in the same directory and compile
-to css
+The CSS styling is handled in ```app/assets/stylesheets/```, but do not edit the global css file ```application.css```. Instead edit the scss file ```application.scss``` which is in the same directory and compile by running ```./compileCSS.sh```. This is scss sytax, which is like css but includes variable names and several other useful css improvements. [Teach me how to scss](http://sass-lang.com/guide).
 
 ### Global HTML header
 The code in ```app/views/layouts/application.html.erb``` is applied to each HTML
-page globally. So things like the page titles, bootstrap include, and global font are here.
+page globally. So things like the page titles, bootstrap include, and global font are here only once and therefore do not need to be included in any other html files.
 
