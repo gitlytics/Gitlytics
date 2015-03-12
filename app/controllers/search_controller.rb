@@ -1,12 +1,19 @@
 class SearchController < ApplicationController
   require 'GithubClient'
-  
+
+  def query
+    # Upon form submission redirect to clean url
+    redirect_to "/#{params[:user]}/#{params[:repo]}"
+  end
+
   def index
+    # Create analytics page
     GithubClient.initialize
-    
-    @repo = GithubClient.get params[:user], params[:repo]#Github.repos.get user: params[:user], repo: params[:repo]
-    @languages = GithubClient.getLanguages params[:user], params[:repo] #github.repos.languages user: params[:user], repo: params[:repo]
+
+    @repo = GithubClient.get params[:user], params[:repo]
+    @languages = GithubClient.getLanguages params[:user], params[:repo]
     @pulls = GithubClient.getPulls params[:user], params[:repo]
   end
+
 
 end
