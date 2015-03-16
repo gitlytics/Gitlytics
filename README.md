@@ -18,6 +18,9 @@ You can also add these to your .bashrc and .bash_profile files, but I’m not su
 # Run it
 ```bin/rails server```
 
+# Database
+If we want to use Heroku for hosting, we should ensure not to use SQLite and rather use PostgreSQL (https://devcenter.heroku.com/articles/sqlite3).  The alternative is to set up an ec2 or digitial ocean instance and handle the DB creation, etc. on our own.
+
 # Best Practices
 ### CSS Styles
 The CSS styling is handled in ```app/assets/stylesheets/```, but do not edit the global css file ```application.css```. Instead edit the scss file ```application.scss``` which is in the same directory and compile by running ```./compileCSS.sh```. This is scss sytax, which is like css but includes variable names and several other useful css improvements. [Teach me how to scss](http://sass-lang.com/guide).
