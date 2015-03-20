@@ -1,11 +1,26 @@
 module SearchHelper
   def getLanguageURL language
-    imgSrc = ''
     case language
       when "Ruby"
-        imgSrc = 'http://www.blackberrycool.com/wp-content/uploads/2009/10/ruby-300x300.png'
+        imgSrc = 'ruby.png'
+      when "Python"
+        imgSrc = 'python.png'
+      when "JavaScript"
+        imgSrc = 'js.png'
+      when "Java"
+        imgSrc = 'java.png'
+      when "PHP"
+        imgSrc = 'php.png'
+      when "C++"
+        imgSrc = 'cplusplus.png'
+      when "C"
+        imgSrc = 'c.png'
+      when "CSS"
+        imgSrc = 'css.png'
+      when "Objective-C"
+        imgSrc = 'objectivec.png'
       else
-        imgSrc = 'http://www.blackberrycool.com/wp-content/uploads/2009/10/ruby-300x300.png'
+        imgSrc = 'question.png'
     end 
 
     return imgSrc

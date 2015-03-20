@@ -13,7 +13,7 @@ export GH_PASSWORD=’password’
 Test out by using
 ``` echo $GH_USERNAME ```
 
-You can also add these to your .bashrc and .bash_profile files, but I’m not sure how secure this is.
+Add these to your .bashrc for persistance
 
 # Run it
 ```bin/rails server```
@@ -29,3 +29,5 @@ The CSS styling is handled in ```app/assets/stylesheets/```, but do not edit the
 The code in ```app/views/layouts/application.html.erb``` is applied to each HTML
 page globally. So things like the page titles, bootstrap include, and global font are here only once and therefore do not need to be included in any other html files.
 
+### Image minification
+If you add even a single image to the repo, perform a lossless minification with ```optipng filename```. This saves on our total repo size without sacrificing quality
