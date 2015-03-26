@@ -29,5 +29,21 @@
         <p>Pull request <%= pull.number %> is: <%= pull.state %></p>
     <% end %>
 
+	<h4>Contributors</h4>
+	<p><%= @contrib%></p>
+	
+	<h4>Readme</h4>
+	<p><%= @read %></p>
+	
+	<h4>Stars</h4>
+	<p><%= @repo.stargazers_count %></p>
+	<p><%= %></p>
+	
+	<h4>Growth Rate</h4>
+	<p>Repo Created: <%= repoTime = @repo.created_at.sub("T"," ").sub("Z", " ") %></p>
+	<p>Current time: <%= time = Time.now.strftime("%Y-%m-%d %H:%M:%S") %></p>
+	<p>Approximately <%= 1.0/(getTime(repoTime, time).to_f/@repo.stargazers_count.to_f) %> stars per day</p>
+	
+	<%= link_to 'Return to Homepage', :back %>
 
 </html>

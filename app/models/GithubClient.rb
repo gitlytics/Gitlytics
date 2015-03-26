@@ -12,10 +12,18 @@ class GithubClient
     # Get basic repo info
     return @@github.repos.get user: user, repo: repo
   end
-
+  
   def self.getLanguages(user, repo)
     # Get simple language info
     return @@github.repos.languages user: user, repo: repo
+  end
+  
+  def self.getContrib(user, repo)
+	#Get number of contributors
+	contrib = @@github.repos.contributors user: user, repo: repo
+	s = contrib.to_s
+	value = s.scan("followers_url").length
+	return value
   end
 
   def self.getPulls(user, repo)
@@ -23,6 +31,22 @@ class GithubClient
     state = "all"
     pulls = @@github.pull_requests.list user: user, repo: repo, state: state
     return pulls
-    
   end
+  
+  def self.getReadMe(user, repo)
+	#check if there is a readme file
+	read = @@github.repos.contents.readme user: user, repo: repo
+	if (read != nil)
+		return "This repository has a ReadME"
+	else
+		return "This repository does not have a ReadME"
+	end
+  end
+  
+  def self.getRepos(user)
+    #gets list of all the repositories
+	repoList = @@github.repos.list user: user
+	return repoList
+  end
+  
 end
