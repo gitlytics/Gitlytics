@@ -6,8 +6,8 @@ For running locally, the GithubClient model searches for two environment variabl
 These are GH_USERNAME and GH_PASSWORD.  To set, in the same terminal you will run the server from, type (with the quotes): 
 
 ```
-export GH_USERNAME=’username’
-export GH_PASSWORD=’password’
+export GH_USERNAME='username'
+export GH_PASSWORD='password'
 ```
 
 Test out by using
