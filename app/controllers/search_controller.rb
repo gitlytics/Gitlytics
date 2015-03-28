@@ -15,7 +15,7 @@ class SearchController < ApplicationController
     @pulls = GithubClient.getPulls params[:user], params[:repo]
     @read = GithubClient.getReadMe params[:user], params[:repo]
     @repoList = GithubClient.getRepos params[:user]
-    
+
   end
 
 

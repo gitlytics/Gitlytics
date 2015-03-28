@@ -47,7 +47,7 @@ class GithubClient
   
   def self.getRepos(user)
     #gets list of all the repositories
-	repoList = @@github.repos.list user: user
+	repoList = @@github.repos.list user: user, per_page: 100
 	return repoList
   end
   
