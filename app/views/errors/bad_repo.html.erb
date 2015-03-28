@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- head elements globally set in app/views/layouts/application.html.erb -->
+</head>
+<body>
+
+<div class="container center" style="background: #F89406">
+    <div class="cloud-text">
+      <h1>Gitlytics</h1>
+      <center>
+      <h3>Sadly the repo you asked for does not exist.  Please try again or contact the system administrators if you believe something
+        is wrong.</h3>
+    <h4>You searched for:</h4>
+    <h5>Repository: <%= @repo %></h5>
+    <h5>By: <%= @user %></h5>
+
+    <a href="/"><button class="btn btn-default">Return to Homepage</button></a>
+      </center>
+    </div>
+</div>
+
+</body>
+</html>
+
+
