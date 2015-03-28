@@ -35,11 +35,13 @@ class GithubClient
   
   def self.getReadMe(user, repo)
 	#check if there is a readme file
-	read = @@github.repos.contents.readme user: user, repo: repo
-	if (read != nil)
-		return "This repository has a ReadME"
-	else
-		return "This repository does not have a ReadME"
+	begin 
+	  read = @@github.repos.contents.readme user: user, repo: repo
+	  if (read)
+	     return "This repository has a README"
+	  end
+	rescue
+	  return "This repository does not have a README"
 	end
   end
   
