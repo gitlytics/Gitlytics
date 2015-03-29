@@ -46,7 +46,7 @@ class GithubClient
   end
   
   def self.getRepos(user)
-    #gets list of all the repositories
+    #gets list of all the repositories (limit is 100 pages)
 	repoList = @@github.repos.list user: user, per_page: 100
 	return repoList
   end

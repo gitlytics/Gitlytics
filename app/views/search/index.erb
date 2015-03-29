@@ -36,8 +36,20 @@
 	<p><%= @read %></p>
 	
 	<h4>Stars</h4>
-	<p><%= @repo.stargazers_count %></p>
-	<p><%= %></p>
+	<p>Star Count: <%= numStars = @repo.stargazers_count %></p>
+	<% maxStar = 0 %>
+	<% @repoList.each do |star| %>
+	   <% starCount = star.stargazers_count.to_i %>
+	   <% if starCount > maxStar %>
+	   <% maxStar = starCount %>
+	   <% end %></p>
+	<% end %>
+	<% if maxStar > numStars %>
+	<p>This repository has fewer stars than some other repository with maximum star count of <%= maxStar %></p>
+	<% end %>
+	<% if numStars >= maxStar %>
+	<p>This repository has the most stars</p>
+	<% end %>
 	
 	<h4>Growth Rate</h4>
 	<p>Repo Created: <%= repoTime = @repo.created_at.sub("T"," ").sub("Z", " ") %></p>
