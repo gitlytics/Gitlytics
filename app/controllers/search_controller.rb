@@ -1,5 +1,7 @@
 class SearchController < ApplicationController
   require 'GithubClient'
+  require 'Analytics'
+
   GithubClient.initialize
 
   def query
@@ -19,11 +21,14 @@ class SearchController < ApplicationController
       redirect_to :controller => 'errors', :action => 'bad_repo', :user => params[:user], :repo => params[:repo]
       return
     end
-      @contrib = GithubClient.getContrib params[:user], params[:repo]
-      @languages = GithubClient.getLanguages params[:user], params[:repo]
-      @pulls = GithubClient.getPulls params[:user], params[:repo]
-      @read = GithubClient.getReadMe params[:user], params[:repo]
-      @repoList = GithubClient.getRepos params[:user]
+    @contrib = GithubClient.getContrib params[:user], params[:repo]
+    @languages = GithubClient.getLanguages params[:user], params[:repo]
+    @pulls = GithubClient.getPulls params[:user], params[:repo]
+    @read = GithubClient.getReadMe params[:user], params[:repo]
+    repoList = GithubClient.getRepos params[:user]
+    @relativePopularity = Analytics.relativePopularity(repoList, @repo.stargazers_count)
+    @growthRate = Analytics.growthRate(@repo)
+
   end
 
 

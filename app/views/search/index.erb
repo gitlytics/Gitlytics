@@ -37,24 +37,12 @@
 	
 	<h4>Stars</h4>
 	<p>Star Count: <%= numStars = @repo.stargazers_count %></p>
-	<% maxStar = 0 %>
-	<% @repoList.each do |star| %>
-	   <% starCount = star.stargazers_count.to_i %>
-	   <% if starCount > maxStar %>
-	   <% maxStar = starCount %>
-	   <% end %></p>
-	<% end %>
-	<% if maxStar > numStars %>
-	<p>This repository has fewer stars than some other repository with maximum star count of <%= maxStar %></p>
-	<% end %>
-	<% if numStars >= maxStar %>
-	<p>This repository has the most stars</p>
-	<% end %>
+    <%= @relativePopularity %>
 	
 	<h4>Growth Rate</h4>
-	<p>Repo Created: <%= repoTime = @repo.created_at.sub("T"," ").sub("Z", " ") %></p>
-	<p>Current time: <%= time = Time.now.strftime("%Y-%m-%d %H:%M:%S") %></p>
-	<p>Approximately <%= 1.0/(getTime(repoTime, time).to_f/@repo.stargazers_count.to_f) %> stars per day</p>
+	<p>Repo Created: <%= @growthRate.repoTime %></p>
+    <p>Current time: <%= @growthRate.time %></p>
+	<p>Approximately <%= @growthRate.rate %> stars per day</p>
 	
 	<%= link_to 'Return to Homepage', :back %>
 
