@@ -1,4 +1,4 @@
-class GithubClient
+class GithubFacade
 
   def self.initialize
     username = ENV['GH_USERNAME']
@@ -18,7 +18,7 @@ class GithubClient
     return @@github.repos.languages user: user, repo: repo
   end
   
-  def self.getContrib(user, repo)
+  def self.getContributors(user, repo)
 	#Get number of contributors
 	contrib = @@github.repos.contributors user: user, repo: repo
 	s = contrib.to_s
