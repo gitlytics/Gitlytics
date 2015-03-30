@@ -21,6 +21,14 @@ Add these to your .bashrc for persistance
 # Database
 If we want to use Heroku for hosting, we should ensure not to use SQLite and rather use PostgreSQL (https://devcenter.heroku.com/articles/sqlite3).  The alternative is to set up an ec2 or digitial ocean instance and handle the DB creation, etc. on our own.
 
+Add the following line to /etc/postgresql/9.4/main/pg_hba.conf:
+local   all gitlytics   md5
+
+restart postgres:
+sudo service postgresql restart
+
+rake db:create
+
 # Best Practices
 ### CSS Styles
 The CSS styling is handled in ```app/assets/stylesheets/```, but do not edit the global css file ```application.css```. Instead edit the scss file ```application.scss``` which is in the same directory and compile by running ```./compileCSS.sh```. This is scss sytax, which is like css but includes variable names and several other useful css improvements. [Teach me how to scss](http://sass-lang.com/guide).
