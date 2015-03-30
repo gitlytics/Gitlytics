@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  info: MyString
+  contributors: MyString
+  languages: MyString
+  pulls: 
+  read_me: 
+  popularity: 
+  growth: 
+
+two:
+  info: MyString
+  contributors: MyString
+  languages: MyString
+  pulls: 
+  read_me: 
+  popularity: 
+  growth: 
