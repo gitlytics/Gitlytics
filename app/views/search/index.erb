@@ -11,38 +11,38 @@
 
     </div>
     <h4> Language </h4>
-    <p> Primary language is: <%= @repo.language %></p>
+    <p> Primary language is: <%= @repository.repo.language %></p>
 
     <div class="row">
       <div class="col-md-2 image_container">
-        <%= image_tag((getLanguageURL @repo.language), class: "img-responsive") %>
+        <%= image_tag((getLanguageURL @repository.repo.language), class: "img-responsive") %>
       </div>
     </div>
 
     <h4> Other language data:</h4>
-    <% @languages.each do |key,value| %>
-        <p><%= key %>: <%= value %> bytes.</p>
+    <% @repository.languages.each do |language,bytes| %>
+        <p><%= language %>: <%= bytes %> bytes.</p>
     <% end %>
 
     <h4>Pulls</h4>
-    <% @pulls.each do |pull| %>
+    <% @repository.pulls.each do |pull| %>
         <p>Pull request <%= pull.number %> is: <%= pull.state %></p>
     <% end %>
 
 	<h4>Contributors</h4>
-	<p><%= @contrib%></p>
+	<p><%= @repository.contributors %></p>
 	
 	<h4>Readme</h4>
-	<p><%= @read %></p>
+	<p><%= @repository.read %></p>
 	
 	<h4>Stars</h4>
-	<p>Star Count: <%= numStars = @repo.stargazers_count %></p>
-    <%= @relativePopularity %>
+	<p>Star Count: <%= @repository.repo.stargazers_count %></p>
+    <%= @repository.relativePopularity %>
 	
 	<h4>Growth Rate</h4>
-	<p>Repo Created: <%= @growthRate.repoTime %></p>
-    <p>Current time: <%= @growthRate.time %></p>
-	<p>Approximately <%= @growthRate.rate %> stars per day</p>
+	<p>Repo Created: <%= @repository.growthRate.repoTime %></p>
+    <p>Current time: <%= @repository.growthRate.time %></p>
+	<p>Approximately <%= @repository.growthRate.rate %> stars per day</p>
 	
 	<%= link_to 'Return to Homepage', :back %>
 

@@ -1,24 +1,26 @@
 class Analytics
+  # Use ostruct so we can reference with dot - I'm lazy
   require 'ostruct'
 
   def self.relativePopularity(repoList, numStars)
     #gets list of all the repositories (limit is 100 pages)
-    maxStar = 0
+    maxStars = 0
     repoList.each do |star|
       starCount = star.stargazers_count.to_i
-      if starCount > maxStar
-        maxStar = starCount
-      end 
+      if starCount > maxStars
+        maxStars = starCount
+      end
     end
-    if maxStar > numStars
-      return "This repository has fewer stars than some other repository with maximum star count of " + maxStar.to_s
-    elsif numStars >= maxStar
+    if maxStars > numStars
+      return "This repository has fewer stars than some other repository with maximum star count of " + maxStars.to_s
+    elsif numStars >= maxStars
       return "This repository has the most stars compared to other repos by the same user."
     end
   end
 
   def self.getTime(repoTime, curTime)
     # Helper function for growthRate
+    # TODO: Steven this is cool, but there's got to be a built in function for this, right?
     repYear = repoTime[0..3].to_i
     repMonth = repoTime[5..6].to_i
     repDay = repoTime[8..9].to_i
