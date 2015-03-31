@@ -21,8 +21,13 @@ Add these to your .bashrc for persistance
 # Database
 If we want to use Heroku for hosting, we should ensure not to use SQLite and rather use PostgreSQL (https://devcenter.heroku.com/articles/sqlite3).  The alternative is to set up an ec2 or digitial ocean instance and handle the DB creation, etc. on our own.
 
+http://stackoverflow.com/questions/19953653/how-to-set-up-postgres-database-for-local-rails-project
+
 Add the following line to /etc/postgresql/9.4/main/pg_hba.conf:
 local   all gitlytics   md5
+
+create user:
+gitlytics
 
 restart postgres:
 sudo service postgresql restart
