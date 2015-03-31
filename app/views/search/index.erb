@@ -10,19 +10,37 @@
       </div>
 
     </div>
-    <h4> Language </h4>
-    <p> Primary language is: <%= @repository.repo.language %></p>
-
     <div class="row">
-      <div class="col-md-2 image_container">
+      <div class="col-md-offset-3 col-md-2 image_container">
         <%= image_tag((getLanguageURL @repository.repo.language), class: "img-responsive") %>
+      </div>
+      <div class="col-md-2">
+        <p><%= raw(buildStars @repository.repo.stargazers_count) %></p>
+      </div>
+      <div class="col-md-2">
+        <h3><%= (@repository.growthRate.rate).round(2) %> stars per day</h3>
       </div>
     </div>
 
-    <h4> Other language data:</h4>
-    <% @repository.languages.each do |language,bytes| %>
-        <p><%= language %>: <%= bytes %> bytes.</p>
-    <% end %>
+    <hr width="70%" style="border-top: 2px solid gray">
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-2 ">
+        <h4> Other language data:</h4>
+        <% @repository.languages.each do |language,bytes| %>
+            <p><%= language %>: <%= bytes %> bytes.</p>
+        <% end %>
+      </div>
+      <div class="col-md-2">
+        <h4>Birthday</h4>
+        <p>Repo Created: <%= @repository.growthRate.repoTime %></p>
+      </div>
+      <div class="col-md-2 ">
+        <p><%= raw(buildReadme @repository.read) %></p>
+        
+      </div>
+    </div>
+
 
     <h4>Pulls</h4>
     <% @repository.pulls.each do |pull| %>
@@ -35,15 +53,18 @@
 	<h4>Readme</h4>
 	<p><%= @repository.read %></p>
 	
-	<h4>Stars</h4>
-	<p>Star Count: <%= @repository.repo.stargazers_count %></p>
     <%= @repository.relativePopularity %>
 	
-	<h4>Growth Rate</h4>
-	<p>Repo Created: <%= @repository.growthRate.repoTime %></p>
-    <p>Current time: <%= @repository.growthRate.time %></p>
-	<p>Approximately <%= @repository.growthRate.rate %> stars per day</p>
-	
-	<%= link_to 'Return to Homepage', :back %>
+  <!-- <p>Current time: <%= @repository.growthRate.time %></p> -->
 
+    <div class="text-center">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-large">
+          <%= link_to 'Return to Homepage', '/' %>
+        </button>
+        <button type="button" class="btn btn-default btn-large">
+          <%= link_to 'Pull new data from database', '#' %>
+        </button>
+      </div>
+    </div>
 </html>
