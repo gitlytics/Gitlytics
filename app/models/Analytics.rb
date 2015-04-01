@@ -42,6 +42,7 @@ class Analytics
     toReturn = {}
     toReturn[:repoTime] = repo.created_at.sub("T"," ").sub("Z", " ")
     toReturn[:time] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+    toReturn[:timeSince] = getTime(toReturn[:repoTime], toReturn[:time]).to_i
     toReturn[:rate] = 1.0/(getTime(toReturn[:repoTime], toReturn[:time]).to_f/repo.stargazers_count.to_f)
     return OpenStruct.new(toReturn)
   end

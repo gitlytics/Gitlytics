@@ -34,6 +34,7 @@
       <div class="col-md-2">
         <h4>Birthday</h4>
         <p>Repo Created: <%= @repository.growthRate.repoTime %></p>
+        <p>Repo Age: <%= @repository.growthRate.timeSince %> days</p>
       </div>
       <div class="col-md-2 ">
         <p><%= raw(buildReadme @repository.read) %></p>
