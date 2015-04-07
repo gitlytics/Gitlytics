@@ -43,7 +43,7 @@ module SearchHelper
       resize = "1 star = 5 stargazers"
       stars /= 5
     end
-    for i in 0..stars
+    for i in 0..stars-1
       if i % 5 == 4 #insert a space every five
         toReturn += "<i class=\"fa fa-star\">&#160;&#160;</i>"
       else
