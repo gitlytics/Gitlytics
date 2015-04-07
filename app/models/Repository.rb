@@ -2,12 +2,13 @@ class Repository
   require 'GithubFacade'
   require 'Analytics'
   # Define accessors so we can access instance (@) variables with a dot.
-  attr_reader :repo, :contributors, :languages, :pulls, :read,
-    :relativePopularity, :growthRate
+  attr_reader :repo, :contributors, :languages, :read,
+    :relativePopularity, :growthRate, :percentagePullsMerged,
+    :pullsToIssuesRatio
 
-  GithubFacade.initialize
 
   def initialize()
+    GithubFacade.initialize
   end
 
   def get(user, repo)
@@ -20,7 +21,10 @@ class Repository
     @repo = GithubFacade.get user, repo
     @contributors = GithubFacade.getContributors user, repo
     @languages = GithubFacade.getLanguages user, repo
-    @pulls = GithubFacade.getPulls user, repo
+    pulls = GithubFacade.getPulls user, repo
+    @percentagePullsMerged = Analytics.percentagePullsMerged pulls
+    issues = GithubFacade.getIssues user, repo
+    @pullsToIssuesRatio = Analytics.pullsToIssuesRatio pulls, issues
     @read = GithubFacade.getReadMe user, repo
     # TODO: How badly do we want this? This one takes so long
     repoList = GithubFacade.getRepos user

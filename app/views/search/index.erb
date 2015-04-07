@@ -43,10 +43,9 @@
     </div>
 
 
-    <h4>Pulls</h4>
-    <% @repository.pulls.each do |pull| %>
-        <p>Pull request <%= pull.number %> is: <%= pull.state %></p>
-    <% end %>
+    <h4>Contribution Statistics</h4>
+    <p>Percentage of pull requests merged: <%= @repository.percentagePullsMerged %></p>
+    <p>Ratio of pull requests to issues: <%= @repository.pullsToIssuesRatio %></p>
 
 	<h4>Contributors</h4>
 	<p><%= @repository.contributors %></p>
