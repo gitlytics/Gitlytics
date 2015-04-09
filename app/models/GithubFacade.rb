@@ -50,5 +50,9 @@ class GithubFacade
 	repoList = @@github.repos.list user: user, per_page: 100
 	return repoList
   end
+
+  def self.getIssues(user, repo)
+    return @@github.issues.list user: user, repo: repo
+  end
   
 end
