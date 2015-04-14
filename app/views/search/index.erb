@@ -16,9 +16,11 @@
       </div>
       <div class="col-md-2">
         <p><%= raw(buildStars @repository.repo.stargazers_count) %></p>
+        <p>Star Count: <%= @repository.repo.stargazers_count %></p>
       </div>
       <div class="col-md-2">
         <h3><%= (@repository.growthRate.rate).round(2) %> stars per day</h3>
+        <p style="padding-top: 30px"><%= raw(buildReadme @repository.read) %></p>
       </div>
     </div>
 
@@ -37,8 +39,22 @@
         <p>Repo Age: <%= @repository.growthRate.timeSince %> days</p>
       </div>
       <div class="col-md-2 ">
-        <p><%= raw(buildReadme @repository.read) %></p>
-        
+        <p><%= raw(buildContributors @repository.contributors) %></p>
+        <p> (<%= @repository.contributors %> Contributors)
+      </div>
+    </div>
+
+    <hr width="70%" style="border-top: 2px solid gray">
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-2 ">
+        <h4> test</h4>
+      </div>
+      <div class="col-md-2">
+        <h4> test</h4>
+      </div>
+      <div class="col-md-2 ">
+        <h4> test</h4>
       </div>
     </div>
 
@@ -46,13 +62,8 @@
     <h4>Contribution Statistics</h4>
     <p>Percentage of pull requests merged: <%= @repository.percentagePullsMerged %></p>
     <p>Ratio of pull requests to issues: <%= @repository.pullsToIssuesRatio %></p>
-
-	<h4>Contributors</h4>
-	<p><%= @repository.contributors %></p>
 	
-	<h4>Readme</h4>
-	<p><%= @repository.read %></p>
-	
+	<h4>Popularity</h4>
     <%= @repository.relativePopularity %>
 	
   <!-- <p>Current time: <%= @repository.growthRate.time %></p> -->

@@ -38,13 +38,14 @@ class GithubFacade
 	begin 
 	  read = @@github.repos.contents.readme user: user, repo: repo
 	  if (read)
-	     return "This repository has a README"
-	  end
+	     return true
+    else
+      return false 
+    end
 	rescue
-	  return "This repository does not have a README"
+	  return false
 	end
-  end
-  
+  end 
   def self.getRepos(user)
     #gets list of all the repositories (limit is 100 pages)
 	repoList = @@github.repos.list user: user, per_page: 100
