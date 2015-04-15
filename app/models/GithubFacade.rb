@@ -38,10 +38,10 @@ class GithubFacade
 	begin 
 	  read = @@github.repos.contents.readme user: user, repo: repo
 	  if (read)
-	     return "This repository has a README"
+	     return true
 	  end
 	rescue
-	  return "This repository does not have a README"
+	  return false
 	end
   end
   

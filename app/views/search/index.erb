@@ -21,7 +21,6 @@
         <h3><%= (@repository.growthRate.rate).round(2) %> stars per day</h3>
       </div>
     </div>
-
     <hr width="70%" style="border-top: 2px solid gray">
 
     <div class="row">
@@ -30,6 +29,8 @@
         <% @repository.languages.each do |language,bytes| %>
             <p><%= language %>: <%= bytes %> bytes.</p>
         <% end %>
+        <% legend = {"position" => "top", "maxLines" => 5 } %>
+        <%= pie_chart @repository.languages.each, width: "1000px",  library: {"backgroundColor":"#ECF0F1", legend: legend} %>
       </div>
       <div class="col-md-2">
         <h4>Birthday</h4>
@@ -49,9 +50,6 @@
 
 	<h4>Contributors</h4>
 	<p><%= @repository.contributors %></p>
-	
-	<h4>Readme</h4>
-	<p><%= @repository.read %></p>
 	
     <%= @repository.relativePopularity %>
 	
