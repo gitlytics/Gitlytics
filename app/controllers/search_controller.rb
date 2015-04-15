@@ -3,7 +3,12 @@ class SearchController < ApplicationController
 
   def query
     # Upon form submission, redirect to clean url
-    redirect_to "/#{params[:user]}/#{params[:repo]}"
+    if (params[:user].length > 0 and params[:repo].length > 0)
+       redirect_to "/#{params[:user]}/#{params[:repo]}"
+	else
+	   redirect_to :controller => 'errors', :action => 'bad_repo', :user => params[:user], :repo => params[:repo]
+	end
+	
   end
 
   def index
