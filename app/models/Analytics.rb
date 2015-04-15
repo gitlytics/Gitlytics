@@ -47,4 +47,27 @@ class Analytics
     return OpenStruct.new(toReturn)
   end
 
+  def self.percentagePullsMerged(pulls)
+    # Calculate percentage of pull requests merged into master
+    total = pulls.length
+    merged = 0
+    for pull in pulls do
+      if pull.merged_at
+        merged = merged+1
+      end
+    end
+
+    percentageMerged = merged.to_f/total
+    return percentageMerged
+  end
+
+  def self.pullsToIssuesRatio(pulls, issues)
+    # Calculate ratio of pulls : issues
+    numPulls = pulls.length
+    numIssues = issues.length
+
+    ratio = numPulls.to_f / numIssues
+    return ratio
+  end
+
 end
