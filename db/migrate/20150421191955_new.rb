@@ -4,15 +4,15 @@ class New < ActiveRecord::Migration
     create_table :repositories do |t|
       t.text :user
       t.text :repo_name
-      t.text :refreshed
-      t.text :stargazers
+      t.datetime :refreshed
+      t.integer :stargazers
       t.text :lang
-      t.text :percentage_pulls_merged
-      t.text :contributors
-      t.text :pulls_to_issues
-      t.text :readme
-      t.text :popularity
-      t.text :growth_rate
+      t.integer :percentage_pulls_merged
+      t.integer :contributors
+      t.integer :pulls_to_issues
+      t.boolean :readme
+      t.integer :popularity
+      t.integer :growth_rate
       t.hstore :languages
     end
   end

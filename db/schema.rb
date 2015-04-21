@@ -18,18 +18,18 @@ ActiveRecord::Schema.define(version: 20150421191955) do
   enable_extension "hstore"
 
   create_table "repositories", force: :cascade do |t|
-    t.text   "user"
-    t.text   "repo_name"
-    t.text   "refreshed"
-    t.text   "stargazers"
-    t.text   "lang"
-    t.text   "percentage_pulls_merged"
-    t.text   "contributors"
-    t.text   "pulls_to_issues"
-    t.text   "readme"
-    t.text   "popularity"
-    t.text   "growth_rate"
-    t.hstore "languages"
+    t.text     "user"
+    t.text     "repo_name"
+    t.datetime "refreshed"
+    t.integer  "stargazers"
+    t.text     "lang"
+    t.integer  "percentage_pulls_merged"
+    t.integer  "contributors"
+    t.integer  "pulls_to_issues"
+    t.boolean  "readme"
+    t.integer  "popularity"
+    t.integer  "growth_rate"
+    t.hstore   "languages"
   end
 
 end
