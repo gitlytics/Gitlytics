@@ -1,35 +1,37 @@
 class Repository < ActiveRecord::Base
-  # Define accessors so we can access instance (@) variables with a dot.
-  attr_reader :stargazers, :growth_rate, :languages, :age, :created, :readme,
-    :percentagePullsMerged, :pullsToIssuesRatio, :popularity, :contributors, :lang
+  serialize :repo, Hash
 
-  def initialize
-    GithubFacade.initialize
-  end
-
-  def get(user, repo)
-    # TODO: Get Repository with all info, pull from db if applicable, otherwise refresh
-    if true
-      refresh(user, repo)
+  def self.get(user, repo_name)
+    # make a new repo if it doesn't exist
+    repo = Repository.where(user: user, repo_name: repo_name)[0]
+    if not repo
+      repo = Repository.new
+      repo.user = user
+      repo.repo_name = repo_name
+      repo.refreshed = Time.at(0)
     end
-    puts @languages
-    @lang = 'hi'
+
+    # refresh the repo if it has been more than 3 days
+    if repo.refreshed < Time.now - (60*60*24*3)
+      refresh(repo)
+    end
   end
 
-  def refresh(user, repo)
-    # Pull all data from APIs
-    @repo = GithubFacade.get user, repo
-    @contributors = GithubFacade.getContributors user, repo
-    @languages = GithubFacade.getLanguages user, repo
-    pulls = GithubFacade.getPulls user, repo
-    @percentagePullsMerged = Analytics.percentagePullsMerged pulls
-    issues = GithubFacade.getIssues user, repo
-    @pullsToIssuesRatio = Analytics.pullsToIssuesRatio pulls, issues
-    @read = GithubFacade.getReadMe user, repo
-    # TODO: How badly do we want this? This one takes so long
-    repoList = GithubFacade.getRepos user
-    @relativePopularity = Analytics.relativePopularity(repoList, @repo.stargazers_count)
-    @growthRate = Analytics.growthRate(@repo)
+  # Pull all data from APIs
+  def refresh(repo)
+    GithubFacade.initialize
+    fac = GithubFacade.get user, repo_name
+    repo.stargazers = fac.stargazers_count
+    repo.contributors = GithubFacade.getContributors user, repo_name
+    repo.languages = GithubFacade.getLanguages user, repo_name
+    pulls = GithubFacade.getPulls user, repo_name
+    repo.percentage_pulls_merged = Analytics.percentagePullsMerged pulls
+    issues = GithubFacade.getIssues user, repo_name
+    repo.pulls_to_issues= Analytics.pullsToIssuesRatio pulls, issues
+    repo.readme = GithubFacade.getReadMe user, repo_name
+    repo.popularity = Analytics.relativePopularity(repoList, fac.stargazers_count)
+    repo.growth_rate = Analytics.growthRate(fac)
+    repo.save
   end
 
 end
