@@ -17,21 +17,25 @@ class Repository < ActiveRecord::Base
     if repo.refreshed < Time.now - (60*60*24*3)
       refresh(repo)
     end
+    repo
   end
 
   # Pull all data from APIs
-  def refresh(repo)
+  def self.refresh(repo)
+    user = repo.user
+    repo_name = repo.repo_name
     GithubFacade.initialize
-    fac = GithubFacade.get user, repo_name
+    fac = GithubFacade.get(user, repo_name)
     repo.stargazers = fac.stargazers_count
-    repo.contributors = GithubFacade.getContributors user, repo_name
-    repo.languages = GithubFacade.getLanguages user, repo_name
-    pulls = GithubFacade.getPulls user, repo_name
-    repo.percentage_pulls_merged = Analytics.percentagePullsMerged pulls
-    issues = GithubFacade.getIssues user, repo_name
-    repo.pulls_to_issues= Analytics.pullsToIssuesRatio pulls, issues
-    repo.readme = GithubFacade.getReadMe user, repo_name
-    repo.popularity = Analytics.relativePopularity(repoList, fac.stargazers_count)
+    repo.contributors = GithubFacade.getContributors(user, repo_name)
+    repo.languages = GithubFacade.getLanguages(user, repo_name)
+    pulls = GithubFacade.getPulls(user, repo_name)
+    repo.percentage_pulls_merged = Analytics.percentagePullsMerged(pulls)
+    issues = GithubFacade.getIssues(user, repo_name)
+    repo.pulls_to_issues= Analytics.pullsToIssuesRatio(pulls, issues)
+    repo.readme = GithubFacade.getReadMe(user, repo_name)
+    repo_list = GithubFacade.getRepos(user)
+    repo.popularity = Analytics.relativePopularity(repo_list, fac.stargazers_count)
     repo.growth_rate = Analytics.growthRate(fac)
     repo.save
   end
