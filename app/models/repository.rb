@@ -15,9 +15,9 @@ class Repository < ActiveRecord::Base
     end
 
     # refresh the repo if it has been more than 3 days
-    #if repo.refreshed < Time.now - (60*60*24*3)
+    if repo.refreshed < Time.now - (60*60*24*3)
       refresh(repo)
-    #end
+    end
     repo
   end
 
@@ -27,7 +27,6 @@ class Repository < ActiveRecord::Base
 
   # Pull all data from APIs
   def self.refresh(repo)
-    puts "Refreshing repo: " + repo.user + "/" + repo.repo_name
     user = repo.user
     repo_name = repo.repo_name
 
@@ -47,6 +46,7 @@ class Repository < ActiveRecord::Base
     repo_list = GithubFacade.getRepos(user)
     repo.popularity = Analytics.relativePopularity(repo_list, fac.stargazers_count)
     repo.growth_rate = Analytics.growthRate(repo.created, repo.stars)
+    repo.refreshed = Time.now
     repo.save!
   end
 

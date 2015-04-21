@@ -11,14 +11,13 @@ class SearchController < ApplicationController
 
   def index
     # Create analytics page
-    #begin
+    begin
       @repo = Repository.get(params[:user], params[:repo])
-    #rescue Exception => e  
-      #puts e.message  
+    rescue Github::Error::NotFound => e
+      puts e.message
       # If error -> redirect to error page w/ relevant info, end fn w/ return
-      #puts "Repo not found"
-      #redirect_to :controller => 'errors', :action => 'bad_repo', :user => params[:user], :repo => params[:repo]
-    #end
+      redirect_to :controller => 'errors', :action => 'bad_repo', :user => params[:user], :repo => params[:repo]
+    end
   end
 
 end
