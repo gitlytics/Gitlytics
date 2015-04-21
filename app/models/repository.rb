@@ -1,5 +1,7 @@
 class Repository < ActiveRecord::Base
-  serialize :repo, Hash
+  validates :user, :repo_name, :refreshed, :stargazers, :lang, :percentage_pulls_merged,
+    :contributors, :pulls_to_issues, :readme, :popularity, :growth_rate, presence: true
+  store_accessor :languages
 
   def self.get(user, repo_name)
     # make a new repo if it doesn't exist

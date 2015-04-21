@@ -13,7 +13,7 @@ class SearchController < ApplicationController
     # Create analytics page
     #begin
       # Check for errors in case repo doesn't exist
-      @repo = Repository.get(params[:user], params[:repo])
+      repo = Repository.get(params[:user], params[:repo])
     #rescue Exception => e  
       #puts e.message  
       # If error -> redirect to error page w/ relevant info, end fn w/ return
