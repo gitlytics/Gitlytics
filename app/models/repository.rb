@@ -1,6 +1,7 @@
 class Repository < ActiveRecord::Base
-  validates :user, :repo_name, :refreshed, :stargazers, :lang, :percentage_pulls_merged,
-    :contributors, :pulls_to_issues, :readme, :popularity, :growth_rate, presence: true
+  validates :user, :repo_name, :refreshed, :pulls_merged,
+    :contributors, :pulls_to_issues, :readme, :popularity, :growth_rate,
+    :lang, :stars, :created, presence: true
   store_accessor :languages
 
   def self.get(user, repo_name)
@@ -14,9 +15,9 @@ class Repository < ActiveRecord::Base
     end
 
     # refresh the repo if it has been more than 3 days
-    if repo.refreshed < Time.now - (60*60*24*3)
+    #if repo.refreshed < Time.now - (60*60*24*3)
       refresh(repo)
-    end
+    #end
     repo
   end
 
@@ -26,17 +27,18 @@ class Repository < ActiveRecord::Base
     repo_name = repo.repo_name
     GithubFacade.initialize
     fac = GithubFacade.get(user, repo_name)
-    repo.stargazers = fac.stargazers_count
+    repo.created = fac.created_at
+    repo.stars = fac.stargazers_count
     repo.contributors = GithubFacade.getContributors(user, repo_name)
     repo.languages = GithubFacade.getLanguages(user, repo_name)
     pulls = GithubFacade.getPulls(user, repo_name)
-    repo.percentage_pulls_merged = Analytics.percentagePullsMerged(pulls)
+    repo.pulls_merged = Analytics.percentagePullsMerged(pulls)
     issues = GithubFacade.getIssues(user, repo_name)
     repo.pulls_to_issues= Analytics.pullsToIssuesRatio(pulls, issues)
     repo.readme = GithubFacade.getReadMe(user, repo_name)
     repo_list = GithubFacade.getRepos(user)
     repo.popularity = Analytics.relativePopularity(repo_list, fac.stargazers_count)
-    repo.growth_rate = Analytics.growthRate(fac)
+    repo.growth_rate = Analytics.growthRate(repo.created, repo.stars)
     repo.save
   end
 

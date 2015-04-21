@@ -5,9 +5,10 @@ class New < ActiveRecord::Migration
       t.text :user
       t.text :repo_name
       t.datetime :refreshed
-      t.integer :stargazers
+      t.datetime :created
+      t.integer :stars
       t.text :lang
-      t.integer :percentage_pulls_merged
+      t.integer :pulls_merged
       t.integer :contributors
       t.integer :pulls_to_issues
       t.boolean :readme

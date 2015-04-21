@@ -26,6 +26,10 @@ module SearchHelper
     return imgSrc
   end
 
+  def age(repo)
+    (Time.now - repo.created)/(60*60*24)
+  end
+
   #Build a string of font-awesome stars for the amount of stargazers
   def buildStars stars
     toReturn =""

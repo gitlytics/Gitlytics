@@ -15,10 +15,10 @@
         <%= image_tag((getLanguageURL @repo.lang), class: "img-responsive") %>
       </div>
       <div class="col-md-2">
-        <p><%= raw(buildStars @repo.stargazers) %></p>
+        <p><%= raw(buildStars @repo.stars) %></p>
       </div>
       <div class="col-md-2">
-        <h3><%= (@repo.growth_rate).round(2) %> stars per day</h3>
+        <h3><%= @repo.growth_rate.round(2) %> stars per day</h3>
       </div>
     </div>
     <hr width="70%" style="border-top: 2px solid gray">
@@ -33,7 +33,7 @@
       <div class="col-md-2">
         <h4>Birthday</h4>
         <p>Repo Created: <%= @repo.created %></p>
-        <p>Repo Age: <%= @repo.age %> days</p>
+        <p>Repo Age: <%= age(@repo) %> days</p>
       </div>
       <div class="col-md-2 ">
         <p><%= raw(buildReadme @repo.readme) %></p>
@@ -47,8 +47,8 @@
 
 
     <h4>Contribution Statistics</h4>
-    <p>Percentage of pull requests merged: <%= @repo.percentagePullsMerged %></p>
-    <p>Ratio of pull requests to issues: <%= @repo.pullsToIssuesRatio %></p>
+    <p>Percentage of pull requests merged: <%= @repo.pulls_merged %></p>
+    <p>Ratio of pull requests to issues: <%= @repo.pulls_to_issues %></p>
 
 	<h4>Contributors</h4>
 	<p><%= @repo.contributors %></p>
