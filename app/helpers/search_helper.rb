@@ -66,12 +66,5 @@ module SearchHelper
       return "<span class=\"fa-stack fa-5x\"><i class=\"fa fa-book fa-stack-1x\"></i><i class=\"fa fa-ban fa-stack-2x text-danger \"></i></span><p>(Does not have a README)</p>"
     end
   end
-    #
-  #def getList(user,repoList)
-     #repoList = repoList.to_s
-     #subStr1 = "git_commit_url"
-     #subStr2 = "full_name=" + user + "/"
-     #return repoList[/#{subStr2}()#{subStr1}/m, 1]
-  #end
 end
 

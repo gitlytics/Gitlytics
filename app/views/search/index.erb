@@ -33,7 +33,7 @@
       <div class="col-md-2">
         <h4>Birthday</h4>
         <p>Repo Created: <%= @repo.created %></p>
-        <p>Repo Age: <%= age(@repo) %> days</p>
+        <p>Repo Age: <%= age(@repo).round %> days</p>
       </div>
       <div class="col-md-2 ">
         <p><%= raw(buildReadme @repo.readme) %></p>
