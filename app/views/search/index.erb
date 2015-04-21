@@ -12,13 +12,13 @@
     </div>
     <div class="row">
       <div class="col-md-offset-3 col-md-2 image_container">
-        <%= image_tag((getLanguageURL @repository.repo.language), class: "img-responsive") %>
+        <%= image_tag((getLanguageURL @repo.lang), class: "img-responsive") %>
       </div>
       <div class="col-md-2">
-        <p><%= raw(buildStars @repository.repo.stargazers_count) %></p>
+        <p><%= raw(buildStars @repo.stargazers) %></p>
       </div>
       <div class="col-md-2">
-        <h3><%= (@repository.growthRate.rate).round(2) %> stars per day</h3>
+        <h3><%= (@repo.growth_rate).round(2) %> stars per day</h3>
       </div>
     </div>
     <hr width="70%" style="border-top: 2px solid gray">
@@ -26,37 +26,35 @@
     <div class="row">
       <div class="col-md-offset-3 col-md-2 ">
         <h4> Other language data:</h4>
-        <% @repository.languages.each do |language,bytes| %>
+        <% @repo.languages.each do |language,bytes| %>
             <p><%= language %>: <%= bytes %> bytes.</p>
         <% end %>
       </div>
       <div class="col-md-2">
         <h4>Birthday</h4>
-        <p>Repo Created: <%= @repository.growthRate.repoTime %></p>
-        <p>Repo Age: <%= @repository.growthRate.timeSince %> days</p>
+        <p>Repo Created: <%= @repo.created %></p>
+        <p>Repo Age: <%= @repo.age %> days</p>
       </div>
       <div class="col-md-2 ">
-        <p><%= raw(buildReadme @repository.read) %></p>
+        <p><%= raw(buildReadme @repo.readme) %></p>
         
       </div>
     </div>
     <div class="chart">
         <% legend = {"position" => "top", "maxLines" => 5 } %>
-        <%= pie_chart @repository.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>    
+        <%= pie_chart @repo.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>    
     </div>
 
 
     <h4>Contribution Statistics</h4>
-    <p>Percentage of pull requests merged: <%= @repository.percentagePullsMerged %></p>
-    <p>Ratio of pull requests to issues: <%= @repository.pullsToIssuesRatio %></p>
+    <p>Percentage of pull requests merged: <%= @repo.percentagePullsMerged %></p>
+    <p>Ratio of pull requests to issues: <%= @repo.pullsToIssuesRatio %></p>
 
 	<h4>Contributors</h4>
-	<p><%= @repository.contributors %></p>
+	<p><%= @repo.contributors %></p>
 	
-    <%= @repository.relativePopularity %>
+    <%= @repo.popularity %>
 	
-  <!-- <p>Current time: <%= @repository.growthRate.time %></p> -->
-
     <div class="text-center">
       <div class="btn-group">
         <button type="button" class="btn btn-default btn-large">

@@ -1,19 +1,19 @@
-class Repository
-  require 'GithubFacade'
-  require 'Analytics'
+class Repository < ActiveRecord::Base
   # Define accessors so we can access instance (@) variables with a dot.
-  attr_reader :repo, :contributors, :languages, :read,
-    :relativePopularity, :growthRate, :percentagePullsMerged,
-    :pullsToIssuesRatio
+  attr_reader :stargazers, :growth_rate, :languages, :age, :created, :readme,
+    :percentagePullsMerged, :pullsToIssuesRatio, :popularity, :contributors, :lang
 
-
-  def initialize()
+  def initialize
     GithubFacade.initialize
   end
 
   def get(user, repo)
     # TODO: Get Repository with all info, pull from db if applicable, otherwise refresh
-    refresh(user, repo)
+    if true
+      refresh(user, repo)
+    end
+    puts @languages
+    @lang = 'hi'
   end
 
   def refresh(user, repo)
