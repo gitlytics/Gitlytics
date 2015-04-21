@@ -1,10 +1,9 @@
 class GithubFacade
 
   def self.initialize
-    username = ENV['GH_USERNAME']
-    password = ENV['GH_PASSWORD']
+    token = ENV['GH_TOKEN']
     # GitHub API library
-    @@github = Github.new basic_auth: "#{username}:#{password}"
+    @@github = Github.new oath_token: token
 
   end
 
