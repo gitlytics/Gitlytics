@@ -12,7 +12,6 @@ class SearchController < ApplicationController
   def index
     # Create analytics page
     #begin
-      # Check for errors in case repo doesn't exist
       @repo = Repository.get(params[:user], params[:repo])
     #rescue Exception => e  
       #puts e.message  

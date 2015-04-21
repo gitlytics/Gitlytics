@@ -9,9 +9,9 @@ class Analytics
       end
     end
     if maxStars > numStars
-      return "This repository has fewer stars than some other repository with maximum star count of " + maxStars.to_s
+      "This repository has fewer stars than some other repository with maximum star count of " + maxStars.to_s
     elsif numStars >= maxStars
-      return "This repository has the most stars compared to other repos by the same user."
+      "This repository has the most stars compared to other repos by the same user."
     end
   end
 
@@ -23,24 +23,25 @@ class Analytics
   def self.percentagePullsMerged(pulls)
     # Calculate percentage of pull requests merged into master
     total = pulls.length
+    return 0 if total == 0
     merged = 0
     for pull in pulls do
       if pull.merged_at
-        merged = merged+1
+        merged += 1
       end
     end
 
-    percentageMerged = merged.to_f/total
-    return percentageMerged
+    merged.to_f/total
   end
 
   def self.pullsToIssuesRatio(pulls, issues)
     # Calculate ratio of pulls : issues
-    numPulls = pulls.length
     numIssues = issues.length
+    return 0 if numIssues == 0
+    numPulls = pulls.length
 
     ratio = numPulls.to_f / numIssues
-    return ratio
+    ratio
   end
 
 end

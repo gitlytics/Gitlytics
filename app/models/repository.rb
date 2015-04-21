@@ -21,16 +21,24 @@ class Repository < ActiveRecord::Base
     repo
   end
 
+  def age
+    (Time.now - self.created)/(60*60*24)
+  end
+
   # Pull all data from APIs
   def self.refresh(repo)
+    puts "Refreshing repo: " + repo.user + "/" + repo.repo_name
     user = repo.user
     repo_name = repo.repo_name
+
     GithubFacade.initialize
     fac = GithubFacade.get(user, repo_name)
+
     repo.created = fac.created_at
     repo.stars = fac.stargazers_count
     repo.contributors = GithubFacade.getContributors(user, repo_name)
-    repo.languages = GithubFacade.getLanguages(user, repo_name)
+    repo.languages = GithubFacade.getLanguages(user, repo_name).to_hash
+    repo.lang = fac.language.to_s
     pulls = GithubFacade.getPulls(user, repo_name)
     repo.pulls_merged = Analytics.percentagePullsMerged(pulls)
     issues = GithubFacade.getIssues(user, repo_name)
@@ -39,7 +47,7 @@ class Repository < ActiveRecord::Base
     repo_list = GithubFacade.getRepos(user)
     repo.popularity = Analytics.relativePopularity(repo_list, fac.stargazers_count)
     repo.growth_rate = Analytics.growthRate(repo.created, repo.stars)
-    repo.save
+    repo.save!
   end
 
 end
