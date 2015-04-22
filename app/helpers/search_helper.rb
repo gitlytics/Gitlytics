@@ -34,14 +34,16 @@ module SearchHelper
     if stars > 1000
       resize = "1 star = 100 stargazers"
       stars /= 100
-    end
-    if stars > 500
-      resize = "1 star = 10 stargazers"
-      stars /= 10
-    end
-    if stars > 100
-      resize = "1 star = 5 stargazers"
-      stars /= 5
+    else
+      if stars > 500
+        resize = "1 star = 10 stargazers"
+        stars /= 10
+      else
+        if stars > 100
+          resize = "1 star = 5 stargazers"
+          stars /= 5
+        end
+      end
     end
     for i in 0..stars-1
       if i % 5 == 4 #insert a space every five
@@ -50,17 +52,34 @@ module SearchHelper
         toReturn += "<i class=\"fa fa-star\"></i>"
       end
     end
-    toReturn += "<p>" + resize + "</p><p>Star Count: " + stars.to_s + "</p>"
+    toReturn += "<p>" + resize + "</p>"
     toReturn.html_safe
     return toReturn
   end
   def buildReadme exists
-
     if exists
       return "<i class=\"fa fa-book fa-5x\"></i><p>(has a README)<\p>"
     else
       return "<span class=\"fa-stack fa-5x\"><i class=\"fa fa-book fa-stack-1x\"></i><i class=\"fa fa-ban fa-stack-2x text-danger \"></i></span><p>(Does not have a README)</p>"
     end
   end
+
+  def buildContributors contribs
+    toReturn = ""
+    for i in 0..contribs.to_i - 1
+      toReturn += "<img src=\"/images/programmer.png\" alt=\"1 contrib\" />"
+      if i % 5 == 4 #insert a space every five
+        toReturn += "<p>&#13;</p>"
+      end
+    end
+    return toReturn.html_safe
+  end
+    #
+  #def getList(user,repoList)
+     #repoList = repoList.to_s
+     #subStr1 = "git_commit_url"
+     #subStr2 = "full_name=" + user + "/"
+     #return repoList[/#{subStr2}()#{subStr1}/m, 1]
+  #end
 end
 
