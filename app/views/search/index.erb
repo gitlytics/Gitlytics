@@ -39,39 +39,37 @@
       </div>
       <div class="col-md-2 ">
         <p><%= raw(buildContributors @repository.contributors) %></p>
-        <p> (<%= @repository.contributors %> Contributors)
+        <p>(<%= @repository.contributors %> Contributors)</p>
       </div>
     </div>
 
     <hr width="70%" style="border-top: 2px solid gray">
 
     <div class="row">
-      <div class="col-md-offset-3 col-md-2 ">
-        <h4> test</h4>
-      </div>
-      <div class="col-md-2">
-        <h4> test</h4>
+      <div class="col-md-offset-3 col-md-4 ">
+        <div class="chart">
+            <% legend = {"position" => "top", "maxLines" => 5 } %>
+            <%= pie_chart @repository.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>    
+        </div>
       </div>
       <div class="col-md-2 ">
-        <h4> test</h4>
+        <h4>Popularity</h4>
+        <%= raw(@repository.relativePopularity) %>
       </div>
     </div>
-    <div class="chart">
-        <% legend = {"position" => "top", "maxLines" => 5 } %>
-        <%= pie_chart @repository.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>    
+
+    <hr width="70%" style="border-top: 2px solid gray">
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-3 ">
+        <h3><%= @repository.percentagePullsMerged %>% </h3>
+        <p>Of pull requests are merged</p>
+      </div>
+      <div class="col-md-3">
+        <p>Ratio of pull requests to issues: </p>
+        <h3><%= @repository.pullsToIssuesRatio %></h3>
+      </div>
     </div>
-
-
-    <h4>Contribution Statistics</h4>
-    <p>Percentage of pull requests merged: <%= @repository.percentagePullsMerged %></p>
-    <p>Ratio of pull requests to issues: <%= @repository.pullsToIssuesRatio %></p>
-
-	<h4>Contributors</h4>
-	<p><%= @repository.contributors %></p>
-	
-    <%= @repository.relativePopularity %>
-	
-  <!-- <p>Current time: <%= @repository.growthRate.time %></p> -->
 
     <div class="text-center">
       <div class="btn-group">

@@ -12,9 +12,9 @@ class Analytics
       end
     end
     if maxStars > numStars
-      return "This repository has fewer stars than some other repository with maximum star count of " + maxStars.to_s
-    elsif numStars >= maxStars
-      return "This repository has the most stars compared to other repos by the same user."
+      return "<span class=\"fa-stack fa-5x\"><i class=\"fa fa-star fa-stack-1x\"></i><i class=\"fa fa-ban fa-stack-2x text-danger \"></i></span><p>(Not the user's most popular repo)</p>"
+    else
+      return "<i class=\"fa fa-star fa-5x\"></i><p>(User's most popular repo!)<\p>"
     end
   end
 
@@ -28,9 +28,7 @@ class Analytics
     curMonth = curTime[5..6].to_i
     curDay = curTime[8..9].to_i
     year = curYear - repYear
-    puts year
     month = curMonth - repMonth
-    puts month
     day = curDay - repDay
     if (day < 1)
       day = 1
@@ -57,8 +55,8 @@ class Analytics
       end
     end
 
-    percentageMerged = merged.to_f/total
-    return percentageMerged
+    percentageMerged = merged.to_f*100/total
+    return percentageMerged.floor
   end
 
   def self.pullsToIssuesRatio(pulls, issues)
