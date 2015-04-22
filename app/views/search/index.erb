@@ -16,9 +16,11 @@
       </div>
       <div class="col-md-2">
         <p><%= raw(buildStars @repo.stars) %></p>
+        <p>Star Count: <%= @repo.stars %></p>
       </div>
       <div class="col-md-2">
         <h3><%= @repo.growth_rate.round(2) %> stars per day</h3>
+        <p style="padding-top: 30px"><%= raw(buildReadme @repo.readme) %></p>
       </div>
     </div>
     <hr width="70%" style="border-top: 2px solid gray">
@@ -36,13 +38,26 @@
         <p>Repo Age: <%= @repo.age.round %> days</p>
       </div>
       <div class="col-md-2 ">
-        <p><%= raw(buildReadme @repo.readme) %></p>
-        
+        <p><%= raw(buildContributors @repo.contributors) %></p>
+      </div>
+    </div>
+
+    <hr width="70%" style="border-top: 2px solid gray">
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-2 ">
+        <h4> test</h4>
+      </div>
+      <div class="col-md-2">
+        <h4> test</h4>
+      </div>
+      <div class="col-md-2 ">
+        <h4> test</h4>
       </div>
     </div>
     <div class="chart">
         <% legend = {"position" => "top", "maxLines" => 5 } %>
-        <%= pie_chart @repo.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>    
+        <%= pie_chart @repo.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>
     </div>
 
 
