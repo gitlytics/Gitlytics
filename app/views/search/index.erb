@@ -31,8 +31,6 @@
         <% @repository.languages.each do |language,bytes| %>
             <p><%= language %>: <%= bytes %> bytes.</p>
         <% end %>
-        <% legend = {"position" => "top", "maxLines" => 5 } %>
-        <%= pie_chart @repository.languages.each, width: "1000px",  library: {"backgroundColor":"#ECF0F1", legend: legend} %>
       </div>
       <div class="col-md-2">
         <h4>Birthday</h4>
@@ -57,6 +55,10 @@
       <div class="col-md-2 ">
         <h4> test</h4>
       </div>
+    </div>
+    <div class="chart">
+        <% legend = {"position" => "top", "maxLines" => 5 } %>
+        <%= pie_chart @repository.languages.each, library: {backgroundColor:"#ECF0F1", legend: legend, width: "100%"} %>    
     </div>
 
 
