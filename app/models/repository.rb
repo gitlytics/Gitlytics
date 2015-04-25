@@ -1,6 +1,6 @@
 class Repository < ActiveRecord::Base
   validates :user, :repo_name, :refreshed, :pulls_merged,
-    :contributors, :pulls_to_issues, :readme, :popularity, :growth_rate,
+    :contributors, :issues, :readme, :popularity, :growth_rate,
     :lang, :stars, :created, presence: true
   store_accessor :languages
 
@@ -40,8 +40,7 @@ class Repository < ActiveRecord::Base
     repo.lang = remote.language.to_s
     pulls = fac.getPulls(user, repo_name)
     repo.pulls_merged = Analytics.percentagePullsMerged(pulls)
-    issues = fac.getIssues(user, repo_name)
-    repo.pulls_to_issues= Analytics.pullsToIssuesRatio(pulls, issues)
+    repo.issues = fac.getIssues(user, repo_name).length
     repo.readme = fac.getReadMe(user, repo_name)
     repo_list = fac.getRepos(user)
     repo.popularity = Analytics.relativePopularity(repo_list, remote.stargazers_count)

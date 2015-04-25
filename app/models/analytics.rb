@@ -31,15 +31,4 @@ class Analytics
 
     percent
   end
-
-  def self.pullsToIssuesRatio(pulls, issues)
-    # Calculate ratio of pulls : issues
-    numIssues = issues.length
-    return 0 if numIssues == 0
-    numPulls = pulls.length
-
-    ratio = numPulls.to_f / numIssues
-    ratio
-  end
-
 end
