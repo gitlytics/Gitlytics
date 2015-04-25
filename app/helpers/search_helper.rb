@@ -76,6 +76,7 @@ module SearchHelper
   end
 
   def pulls_to_issues(p, i)
+    return 0 if i == 0
     r = p/i
     r
   end

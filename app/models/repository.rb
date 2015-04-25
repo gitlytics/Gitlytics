@@ -48,5 +48,4 @@ class Repository < ActiveRecord::Base
     repo.refreshed = Time.now
     repo.save!
   end
-
 end
