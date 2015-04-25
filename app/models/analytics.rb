@@ -23,15 +23,16 @@ class Analytics
   def self.percentagePullsMerged(pulls)
     # Calculate percentage of pull requests merged into master
     total = pulls.length
-    return 0 if total == 0
+    return 100 if total == 0
     merged = 0
-    for pull in pulls do
+    pulls.each do |pull|
       if pull.merged_at
         merged += 1
       end
     end
+    percent = merged*100 / total
 
-    merged.to_f/total
+    percent
   end
 
   def self.pullsToIssuesRatio(pulls, issues)

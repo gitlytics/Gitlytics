@@ -30,21 +30,21 @@ class Repository < ActiveRecord::Base
     user = repo.user
     repo_name = repo.repo_name
 
-    GithubFacade.initialize
-    fac = GithubFacade.get(user, repo_name)
+    fac = GithubFacade.new
+    remote = fac.get(user, repo_name)
 
-    repo.created = fac.created_at
-    repo.stars = fac.stargazers_count
-    repo.contributors = GithubFacade.getContributors(user, repo_name)
-    repo.languages = GithubFacade.getLanguages(user, repo_name).to_hash
-    repo.lang = fac.language.to_s
-    pulls = GithubFacade.getPulls(user, repo_name)
+    repo.created = remote.created_at
+    repo.stars = remote.stargazers_count
+    repo.contributors = fac.getContributors(user, repo_name)
+    repo.languages = fac.getLanguages(user, repo_name).to_hash
+    repo.lang = remote.language.to_s
+    pulls = fac.getPulls(user, repo_name)
     repo.pulls_merged = Analytics.percentagePullsMerged(pulls)
-    issues = GithubFacade.getIssues(user, repo_name)
+    issues = fac.getIssues(user, repo_name)
     repo.pulls_to_issues= Analytics.pullsToIssuesRatio(pulls, issues)
-    repo.readme = GithubFacade.getReadMe(user, repo_name)
-    repo_list = GithubFacade.getRepos(user)
-    repo.popularity = Analytics.relativePopularity(repo_list, fac.stargazers_count)
+    repo.readme = fac.getReadMe(user, repo_name)
+    repo_list = fac.getRepos(user)
+    repo.popularity = Analytics.relativePopularity(repo_list, remote.stargazers_count)
     repo.growth_rate = Analytics.growthRate(repo.created, repo.stars)
     repo.refreshed = Time.now
     repo.save!
