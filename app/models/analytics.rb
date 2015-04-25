@@ -1,22 +1,19 @@
 class Analytics
   def self.relativePopularity(repoList, numStars)
     #gets list of all the repositories (limit is 100 pages)
-    maxStars = 0
+    greater = 1
     repoList.each do |star|
-      starCount = star.stargazers_count.to_i
-      if starCount > maxStars
-        maxStars = starCount
+      stars = star.stargazers_count.to_i
+      if stars > numStars
+        greater += 1
       end
     end
-    if maxStars > numStars
-      "This repository has fewer stars than some other repository with maximum star count of " + maxStars.to_s
-    elsif numStars >= maxStars
-      "This repository has the most stars compared to other repos by the same user."
-    end
+    greater
   end
 
   def self.growthRate(created, stars)
-    t = Time.now - created
+    t = (Time.now - created)/(60*60*24)
+    puts "growth: " + (stars/t).to_s
     stars/t
   end
 
