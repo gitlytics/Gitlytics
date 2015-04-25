@@ -13,6 +13,9 @@ class SearchController < ApplicationController
     # Create analytics page
     begin
       @repo = Repository.get(params[:user], params[:repo])
+      if params[:refresh] == 'true'
+        Repository.refresh(@repo)
+      end
     rescue Github::Error::NotFound => e
       puts e.message
       # If error -> redirect to error page w/ relevant info, end fn w/ return

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'search' => 'search#query'
   get '/:user/:repo', to: 'search#index'
+  get '/:user/:repo/refresh', to: 'search#refresh'
 
   # Error handling direct to ruby default pages
   match '/404', to: 'errors#file_not_found', via: :all
