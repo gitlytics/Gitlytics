@@ -74,12 +74,11 @@ module SearchHelper
     end
     return toReturn.html_safe
   end
-    #
-  #def getList(user,repoList)
-     #repoList = repoList.to_s
-     #subStr1 = "git_commit_url"
-     #subStr2 = "full_name=" + user + "/"
-     #return repoList[/#{subStr2}()#{subStr1}/m, 1]
-  #end
+
+  def pulls_to_issues(p, i)
+    return 0 if i == 0
+    r = p/i
+    r
+  end
 end
 

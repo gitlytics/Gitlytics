@@ -53,11 +53,11 @@
   <div class="col-md-4 col-md-offset-1">
     <h4> Contribution Statistics</h4>
     <p> Pull requests merged: <%= @repo.pulls_merged %>% </p>
-    <p> Ratio of pull requests to issues: <%= @repo.pulls_to_issues %> </p>
+    <p> Pull requests to issues: <%= pulls_to_issues(@repo.pulls_merged, @repo.issues) %> to 1</p>
 
     <p> Contributors: <%= @repo.contributors %> </p>
 
-    <p> Popularity: <%= @repo.popularity %> </p>
+    <p> This is <%= params[:user]%>'s #<%= @repo.popularity %> repository </p>
   </div>
 
   <div >
