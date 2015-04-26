@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   template: template0
   pool: 5
   timeout: 5000
@@ -15,15 +15,15 @@ default: &default
 
 development:
   <<: *default
-  database: db/sql_dev
+  database: db/pg_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/sql_test
+  database: db/pg_test
 
 production:
   <<: *default
-  database: db/sql_prod
+  database: db/pg_prod
