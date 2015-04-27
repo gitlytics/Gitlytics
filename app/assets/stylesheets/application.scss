@@ -12,22 +12,27 @@ body {
 .important {
   font-weight: 600;
 }
-h1, h2 {
+h1{
   padding-top: 30px;
   padding-bottom: 50px;
   font-weight: 600;
   font-size: 130px;
   text-align: center;
 }
+h2 {
+  font-weight: 600;
+  font-size: 130px;
+  text-align: center;
+}
 .search-h1{
-  font-size: 100px;
+  font-size: 60px;
   font-weight: 700;
-  text-align: left;
+  text-align: center;
   padding-top: 50px;
-  padding-bottom: 0px;
+  padding-bottom: 40px;
 }
 .search-h2{
-  font-size: 70px;
+  font-size: 120px;
   font-weight: 700;
   text-align: center;
   line-height: 10px; 
@@ -37,6 +42,10 @@ h1, h2 {
 .center {
   margin: 0 auto;
   padding: 40px;
+}
+
+.text-center {
+  text-align: center
 }
 
 .graystone {
